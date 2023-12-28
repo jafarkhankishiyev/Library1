@@ -61,3 +61,4 @@ c:\Users\Aboba\Desktop\Library\Library1\obj\Debug\net8.0\refint\Library1.dll
 c:\Users\Aboba\Desktop\Library\Library1\obj\Debug\net8.0\Library1.pdb
 c:\Users\Aboba\Desktop\Library\Library1\obj\Debug\net8.0\Library1.genruntimeconfig.cache
 c:\Users\Aboba\Desktop\Library\Library1\obj\Debug\net8.0\ref\Library1.dll
+C:\Users\Aboba\Desktop\Library\Library1\obj\Debug\net8.0\Library1.sourcelink.json
