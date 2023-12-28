@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Collections.Concurrent;
+using System.Collections.Generic;
 using System.Data;
+using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using Npgsql;
 
@@ -11,8 +14,9 @@ namespace Library
         static async Task Main(string[] args)
         {
             //Установка соединения
-            var connectionString = "Server=localhost;User Id = postgres; Password = 123; Database=postgres";
+            var connectionString = "Server=localhost;User Id = postgres; Password = 123; Database=library";
             await using var dataSource = NpgsqlDataSource.Create(connectionString);
+
 
             //Выбор операции
 
@@ -25,24 +29,17 @@ namespace Library
             while (exitNum == 0) {
                 Console.WriteLine("\n Выберите операцию, которую хотите выполнить: \n 1. Получить список доступных книг. \n 2. Добавить новую книгу. \n 3. Изменить данные о книге. \n 4. Удалить книгу из каталога. \n 5. Введите любое другое значение чтобы выйти. \n Выберите операцию:");
                 string result = Console.ReadLine();
+
+                //Read
                 if(result == "1") {
-                await using var command1 = dataSource.CreateCommand("SELECT * FROM books");
-                await using var reader1 = await command1.ExecuteReaderAsync();
-                Console.WriteLine("\n Название \t Автор \t Жанр \t Год выпуска");
-                int i = 1;
-
-                if (reader1.HasRows) 
-                    {
-                        while (await reader1.ReadAsync()) {
-                            object name = reader1.GetValue(0);
-                            object author = reader1.GetValue(1);
-                            object genre = reader1.GetValue(2);
-                            object year = reader1.GetValue(3);
-
-                            Console.WriteLine($"\n {i}. {name} \t {author} \t {genre} \t {year}");
-                            i++;
-                        }
-                        }
+                    Console.WriteLine("\n Название \t Автор \t Жанр \t Год выпуска");
+                    List<Book> books = await Book.getBooksAsync();
+                    int i = 1;
+                    foreach (Book b in books) {
+                        Console.WriteLine($"\n {i}. {b.Name} \t {b.Author} \t {b.Genre} \t {b.Release}");
+                        i++;
+                }
+                
     
 
                 } else if (result == "2") {
@@ -56,12 +53,7 @@ namespace Library
                     Console.WriteLine(" \n Введите год выпуска книги:");
                     string bookYear = Console.ReadLine();
 
-                    await using var command2 = dataSource.CreateCommand("INSERT INTO books (name, author, genre, released) VALUES (@BookName, @BookAuthor, @BookGenre, @BookYear)");
-                    command2.Parameters.AddWithValue("@BookName", bookName);
-                    command2.Parameters.AddWithValue("@BookAuthor", bookAuthor);
-                    command2.Parameters.AddWithValue("@BookGenre", bookGenre);
-                    command2.Parameters.AddWithValue("@BookYear", bookYear);
-                    int number = await command2.ExecuteNonQueryAsync();
+                    int number = Book.addBook(bookName, bookAuthor, bookGenre, bookYear);
                     if (number > 0) {
                         Console.WriteLine($"\n Операция успешно выполнена. {number} объект добавлен.");
                     }
@@ -164,5 +156,6 @@ namespace Library
 
 
     }
+
 }
 }
