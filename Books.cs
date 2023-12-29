@@ -61,5 +61,21 @@ namespace Library {
             int number = await command2.ExecuteNonQueryAsync();
             return number;
         }
+        public static async int editBook(string dataChoicePrepared, string dataUpdate, string bookNameString) {
+            var connectionString = "Server=localhost;User Id = postgres; Password = 123; Database=library";
+            await using var dataSource = NpgsqlDataSource.Create(connectionString);
+            await using var command5 = dataSource.CreateCommand($"UPDATE books SET {dataChoicePrepared}=@DataUpdate WHERE name=@BookName");
+            command5.Parameters.AddWithValue("@DataUpdate", dataUpdate);
+            command5.Parameters.AddWithValue("@BookName", bookNameString);
+            int number = await command5.ExecuteNonQueryAsync();
+            return number;
+        }
+        public static async int deleteBook(List<Book> books, int bookDeleteNumInt) {
+            var connectionString = "Server=localhost;User Id = postgres; Password = 123; Database=library";
+            await using var dataSource = NpgsqlDataSource.Create(connectionString);
+            await using var command7 = dataSource.CreateCommand($"DELETE FROM books WHERE name=@BookToDelete;");
+            command7.Parameters.AddWithValue("@BookToDelete", books[bookDeleteNumInt].Name);
+            await using var reader7 = await command7.ExecuteReaderAsync();
+        }
     }
 }
