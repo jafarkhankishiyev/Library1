@@ -13,7 +13,7 @@ namespace Library
     {
         public static string GetConnectionString() {
             DBConfiguration dbConfData = new DBConfiguration();
-            string connectionString = $"Server={dbConfData.Server};User Id = {dbConfData.UserId}; Password = {dbConfData.UserId}; Database={dbConfData.Database}";
+            string connectionString = $"Server={dbConfData.Server};User Id = {dbConfData.UserId}; Password = {dbConfData.Password}; Database={dbConfData.Database}";
             return connectionString;
         }
         public static string Read() {

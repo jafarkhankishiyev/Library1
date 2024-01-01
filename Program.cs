@@ -43,8 +43,7 @@ namespace Library
                     string bookGenre = Console.ReadLine();
                     Console.WriteLine(" \n Введите год выпуска книги:");
                     string bookYear = Console.ReadLine();
-                    int number = 0;
-                    Book.AddBook(bookName, bookAuthor, bookGenre, bookYear, number);
+                    int number = await Book.AddBook(bookName, bookAuthor, bookGenre, bookYear);
                     if (number > 0)
                     {
                         Console.WriteLine($"\n Операция успешно выполнена. {number} объект добавлен.");
@@ -76,8 +75,7 @@ namespace Library
                     string dataChoicePrepared = dataChoices[dataChoiceInt];
                     object bookName = books[bookChoiceInt].Name;
                     string bookNameString = bookName.ToString();
-                    int number = 0;
-                    Book.EditBook(dataChoicePrepared, dataUpdate, bookNameString, number);
+                    int number = await Book.EditBook(dataChoicePrepared, dataUpdate, bookNameString);
                     if (number > 0)
                     {
                         Console.WriteLine($"\n Операция успешно выполнена. {number} объект обновлен.");
@@ -98,8 +96,7 @@ namespace Library
                     string bookDeleteNum = Console.ReadLine();
                     int bookDeleteNumInt = Int32.Parse(bookDeleteNum);
                     bookDeleteNumInt--;
-                    int number = 0;
-                    Book.DeleteBook(books, bookDeleteNumInt, number);
+                    int number = await Book.DeleteBook(books, bookDeleteNumInt);
                     Console.WriteLine($"\n Удалено {number} книг.");
                 }
                 else
