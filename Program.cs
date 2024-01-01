@@ -43,7 +43,8 @@ namespace Library
                     string bookGenre = Console.ReadLine();
                     Console.WriteLine(" \n Введите год выпуска книги:");
                     string bookYear = Console.ReadLine();
-                    int number = Book.AddBook(bookName, bookAuthor, bookGenre, bookYear);
+                    int number = 0;
+                    Book.AddBook(bookName, bookAuthor, bookGenre, bookYear, number);
                     if (number > 0)
                     {
                         Console.WriteLine($"\n Операция успешно выполнена. {number} объект добавлен.");
@@ -75,7 +76,8 @@ namespace Library
                     string dataChoicePrepared = dataChoices[dataChoiceInt];
                     object bookName = books[bookChoiceInt].Name;
                     string bookNameString = bookName.ToString();
-                    int number = Book.EditBook(dataChoicePrepared, dataUpdate, bookNameString);
+                    int number = 0;
+                    Book.EditBook(dataChoicePrepared, dataUpdate, bookNameString, number);
                     if (number > 0)
                     {
                         Console.WriteLine($"\n Операция успешно выполнена. {number} объект обновлен.");
@@ -86,7 +88,7 @@ namespace Library
                 {
                     Console.WriteLine("\n Название \t Автор \t Жанр \t Год выпуска");
                     int i = 1;
-                    List<Book> books = await Book.getBooksAsync();
+                    List<Book> books = await Book.GetBooksAsync();
                     foreach (Book b in books)
                     {
                         Console.WriteLine($"\n {i}. {b.Name} \t {b.Author} \t {b.Genre} \t {b.Release}");
@@ -96,7 +98,8 @@ namespace Library
                     string bookDeleteNum = Console.ReadLine();
                     int bookDeleteNumInt = Int32.Parse(bookDeleteNum);
                     bookDeleteNumInt--;
-                    int number = Book.DeleteBook(books, bookDeleteNumInt);
+                    int number = 0;
+                    Book.DeleteBook(books, bookDeleteNumInt, number);
                     Console.WriteLine($"\n Удалено {number} книг.");
                 }
                 else

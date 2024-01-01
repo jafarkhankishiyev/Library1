@@ -9,19 +9,35 @@ using Npgsql;
 
 namespace Library 
 {
-    public class DB 
+    public static class DB 
     {
-        public static async NpgsqlDataSource ConnectToDB() {
+        public static string GetConnectionString() {
             DBConfiguration dbConfData = new DBConfiguration();
-            var connectionString = $"Server={dbConfData.Server};User Id = {dbConfData.UserId}; Password = {dbConfData.UserId}; Database={dbConfData.Database}";
-            await using var dataSource = NpgsqlDataSource.Create(connectionString);
-            return dataSource;
+            string connectionString = $"Server={dbConfData.Server};User Id = {dbConfData.UserId}; Password = {dbConfData.UserId}; Database={dbConfData.Database}";
+            return connectionString;
         }
-        public static async NpgsqlDataReader SelectAll() {
-            var dataSource = DB.ConnectToDB();
-            await using var command = dataSource.CreateCommand("SELECT * FROM books");
+        public static string Read() {
+            string readQuery = "SELECT * FROM books";
+            return readQuery;
+            /*
+            await using var command = dataSource.CreateCommand("");
             await using var reader = await command.ExecuteReaderAsync();
-            return reader;
+            return reader; 
+            */
+        }
+        public static string Create() {
+            string createQuery = "INSERT INTO books (name, author, genre, released) VALUES (@BookName, @BookAuthor, @BookGenre, @BookYear)";
+            return createQuery;
+        }
+        public static string Edit(string dataChoicePrepared) 
+        {
+            string editQuery = $"UPDATE books SET {dataChoicePrepared}=@DataUpdate WHERE name=@BookName";
+            return editQuery;
+        }
+        public static string Delete() 
+        {
+            string deleteQuery = "DELETE FROM books WHERE name=@BookToDelete;";
+            return deleteQuery;
         }
     }
 

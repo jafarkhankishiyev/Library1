@@ -9,6 +9,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Npgsql;
 
 namespace Library_wpf;
 
@@ -23,6 +24,11 @@ public partial class MainWindow : Window
     }
     private void Button_Click(object sender, RoutedEventArgs e) 
     {
-        MessageBox.Show("Hello World!");
+        string text = textBox1.Text;
+        List<Book> books = new List<Book>();
+        Book.GetBooksAsync(books);
+        string result = books[0].Name; //!
+        MessageBox.Show(result);
+        
     }
 }

@@ -1,8 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "fzs+LlvrR6ZuKkKmZYRxjs6JhI9BuF8QKdXSgs8sOmMA/WjRTkxdDH+EpauMZnZya4Qut4JO2bO3HNgTrnz+Dw==",
+  "dgSpecHash": "WS6QPHzYCy0r66+t/94IlIUfpTtEGHBYwD2EAZsXDMSBqZ2ZMCRSz2JVfqFfZwIAakN83oDrh6td4Bzhfn6veA==",
   "success": true,
   "projectFilePath": "C:\\Users\\Aboba\\Desktop\\Library\\Library1\\Library_wpf\\Library_wpf.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\Aboba\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\8.0.0\\microsoft.extensions.dependencyinjection.abstractions.8.0.0.nupkg.sha512",
+    "C:\\Users\\Aboba\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\8.0.0\\microsoft.extensions.logging.abstractions.8.0.0.nupkg.sha512",
+    "C:\\Users\\Aboba\\.nuget\\packages\\npgsql\\8.0.1\\npgsql.8.0.1.nupkg.sha512"
+  ],
   "logs": []
 }

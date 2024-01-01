@@ -6,10 +6,28 @@
         xmlns:local="clr-namespace:Library_wpf"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
-    <Button Content="Нажать" FontSize="13" Width="80" Height="30" 
-    Click="Button_Click" />
+	<Grid ShowGridLines ="True">
+		<Grid.RowDefinitions>
+			<RowDefinition></RowDefinition>
+			<RowDefinition></RowDefinition>
+			<RowDefinition></RowDefinition>
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition></ColumnDefinition>
+			<ColumnDefinition></ColumnDefinition>
+			<ColumnDefinition></ColumnDefinition>
+		</Grid.ColumnDefinitions>
+		<TextBox Grid.Row="2" Grid.Column ="1" x:Name="textBox1" Width="150" Height="30" VerticalAlignment="Top" Margin="20">
+
+		</TextBox>
+		<Button Grid.Row="2" Grid.Column ="1" x:Name ="Button1" Content="Нажать" FontSize="13" Width="80" Height="30"
+		Click="Button_Click">
+			<Button.Background>
+				<SolidColorBrush Opacity="0.5" Color="Blue"/>
+			</Button.Background>
+
+		</Button>
 
 
-    </Grid>
+	</Grid>
 </Window>
